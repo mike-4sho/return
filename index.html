@@ -15,12 +15,15 @@
     <nav class="nav">
         <div class="nav-container">
             <a href="#" class="logo">Return It</a>
-            <a href="#pricing" class="nav-link">Pricing</a>
+            <div class="nav-right">
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#hero-form" class="nav-cta btn btn-primary btn-sm">Join the Waitlist</a>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="hero">
         <!-- Gradient background -->
         <div class="hero-background"></div>
 
@@ -65,7 +68,7 @@
             </div>
 
             <!-- Right side: Form card -->
-            <div class="hero-form-card fade-in fade-in-delay-3">
+            <div class="hero-form-card fade-in fade-in-delay-3" id="hero-form">
                 <!-- Illustration -->
                 <div class="hero-illustration">
                     <svg viewBox="0 0 180 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -100,9 +103,10 @@
 
                 <form class="waitlist-form waitlist-form-stacked" onsubmit="return false;">
                     <input type="email" placeholder="Enter your email" class="email-input" aria-label="Email address">
-                    <button type="submit" class="btn btn-primary btn-arrow">Join the Waitlist</button>
+                    <button type="submit" class="btn btn-primary btn-arrow btn-pulse">Join the Waitlist</button>
                 </form>
 
+                <p class="form-urgency">Limited spots for Austin pilot</p>
                 <p class="form-note">Now piloting in Austin, TX</p>
 
                 <div class="form-proof">
@@ -129,7 +133,7 @@
             <h2 class="section-title">How It Works</h2>
             <p class="section-subtitle">Three simple steps to return freedom</p>
             <div class="steps-grid">
-                <div class="step">
+                <div class="step" data-step="1">
                     <div class="step-number">1</div>
                     <div class="step-icon">
                         <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -142,7 +146,7 @@
                     <h3 class="step-title">Schedule a pickup</h3>
                     <p class="step-desc">Open the app, tell us what you're returning, and choose a pickup window.</p>
                 </div>
-                <div class="step">
+                <div class="step" data-step="2">
                     <div class="step-number">2</div>
                     <div class="step-icon">
                         <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -158,7 +162,7 @@
                     <h3 class="step-title">Leave it at your door</h3>
                     <p class="step-desc">Set the package outside. No need to be home.</p>
                 </div>
-                <div class="step">
+                <div class="step" data-step="3">
                     <div class="step-number">3</div>
                     <div class="step-icon">
                         <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -181,11 +185,15 @@
 
     <!-- Pain Point Section -->
     <section class="pain-point">
+        <div class="pain-point-background"></div>
         <div class="pain-point-blob"></div>
         <div class="container">
             <div class="pain-content">
                 <h2 class="pain-headline">You already outsource groceries, cleaning, and dog walks. Why are you still driving to UPS?</h2>
-                <p class="pain-body">Returns are the worst part of online shopping. The box sitting in your hallway. The label you can't print. The 15-minute detour that somehow takes an hour. Return It makes all of that disappear. One subscription. Unlimited peace of mind.</p>
+                <blockquote class="pain-pullquote">
+                    <p>"The 15-minute detour that somehow takes an hour."</p>
+                </blockquote>
+                <p class="pain-body">Returns are the worst part of online shopping. The box sitting in your hallway. The label you can't print. Return It makes all of that disappear. One subscription. Unlimited peace of mind.</p>
             </div>
         </div>
     </section>
@@ -204,7 +212,7 @@
                     </div>
                     <p class="plan-pickups">2 pickups/month</p>
                     <p class="plan-desc">Perfect for occasional returners</p>
-                    <button class="btn btn-secondary">Get Started</button>
+                    <button class="btn btn-secondary btn-arrow">Join the Waitlist</button>
                 </div>
                 <div class="pricing-card featured">
                     <div class="popular-badge">Most Popular</div>
@@ -215,7 +223,7 @@
                     </div>
                     <p class="plan-pickups">4 pickups/month</p>
                     <p class="plan-desc">Our most popular plan</p>
-                    <button class="btn btn-primary">Get Started</button>
+                    <button class="btn btn-primary btn-arrow">Join the Waitlist</button>
                 </div>
                 <div class="pricing-card">
                     <h3 class="plan-name">Unlimited</h3>
@@ -225,7 +233,7 @@
                     </div>
                     <p class="plan-pickups">Unlimited pickups</p>
                     <p class="plan-desc">For power shoppers and resellers</p>
-                    <button class="btn btn-secondary">Get Started</button>
+                    <button class="btn btn-secondary btn-arrow">Join the Waitlist</button>
                 </div>
             </div>
             <p class="pricing-note">All plans include same-day or next-day pickup, real-time tracking, and confirmation when your return is dropped off.</p>
@@ -237,6 +245,15 @@
         <div class="social-proof-orb social-proof-orb-1"></div>
         <div class="social-proof-orb social-proof-orb-2"></div>
         <div class="container">
+            <!-- Testimonial -->
+            <div class="testimonial">
+                <svg class="testimonial-quote" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/>
+                </svg>
+                <p class="testimonial-text">Finally, someone solved the one thing I hate about online shopping.</p>
+                <p class="testimonial-author">— Early Access Member</p>
+            </div>
+
             <h2 class="proof-headline">Join 500+ Austin shoppers on the waitlist</h2>
             <p class="proof-subhead">Be the first to know when we launch in your neighborhood.</p>
             <form class="waitlist-form waitlist-form-centered" onsubmit="return false;">

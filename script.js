@@ -1,10 +1,13 @@
 /**
  * Return It Landing Page JavaScript
- * Handles FAQ accordion, form feedback, and smooth interactions
+ * Handles FAQ accordion, form feedback, scroll animations, sticky nav, and interactions
  */
 
 (function() {
     'use strict';
+
+    // Check for reduced motion preference
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // --------------------------------------------------------------------------
     // FAQ Accordion
@@ -12,7 +15,7 @@
 
     /**
      * Initialize the FAQ accordion functionality
-     * Allows users to expand/collapse FAQ items by clicking on questions
+     * Allows users to expand/collapse FAQ items with smooth animations
      */
     function initFaqAccordion() {
         var faqItems = document.querySelectorAll('.faq-item');
@@ -70,7 +73,7 @@
 
                     window.scrollTo({
                         top: targetPosition,
-                        behavior: 'smooth'
+                        behavior: prefersReducedMotion ? 'auto' : 'smooth'
                     });
                 }
             });
@@ -94,8 +97,7 @@
 
             if (button && input) {
                 // Store original button state
-                var originalText = button.textContent;
-                var isPrimaryButton = button.classList.contains('btn-primary');
+                var originalHTML = button.innerHTML;
 
                 button.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -108,22 +110,23 @@
                         button.innerHTML = 'You\'re on the list! ✓';
                         button.style.backgroundColor = '#10b981';
                         button.style.boxShadow = '0 4px 14px rgba(16, 185, 129, 0.35)';
-                        button.style.transform = 'scale(1.02)';
+                        button.classList.remove('btn-pulse');
                         input.value = '';
                         input.style.borderColor = '#10b981';
 
                         // Reset after 3 seconds
                         setTimeout(function() {
-                            button.textContent = originalText;
+                            button.innerHTML = originalHTML;
                             button.style.backgroundColor = '';
                             button.style.boxShadow = '';
-                            button.style.transform = '';
                             input.style.borderColor = '';
                         }, 3000);
                     } else if (email) {
                         // Show error state for invalid email
                         input.style.borderColor = '#ef4444';
-                        input.classList.add('shake');
+                        if (!prefersReducedMotion) {
+                            input.classList.add('shake');
+                        }
 
                         setTimeout(function() {
                             input.style.borderColor = '';
@@ -144,15 +147,6 @@
                 input.addEventListener('input', function() {
                     this.style.borderColor = '';
                 });
-
-                // Add focus effect
-                input.addEventListener('focus', function() {
-                    this.parentElement.classList.add('form-focused');
-                });
-
-                input.addEventListener('blur', function() {
-                    this.parentElement.classList.remove('form-focused');
-                });
             }
         });
     }
@@ -168,64 +162,106 @@
     }
 
     // --------------------------------------------------------------------------
-    // Navigation Scroll Effect
+    // Navigation Effects
     // --------------------------------------------------------------------------
 
     /**
-     * Add shadow to navigation when page is scrolled
+     * Handle navigation effects:
+     * - Add shadow when scrolled
+     * - Show/hide sticky CTA after scrolling past hero
      */
-    function initNavScrollEffect() {
+    function initNavEffects() {
         var nav = document.querySelector('.nav');
+        var navCta = document.querySelector('.nav-cta');
+        var hero = document.querySelector('.hero');
+
+        if (!nav || !hero) return;
+
+        var heroHeight = hero.offsetHeight;
         var scrollThreshold = 20;
 
-        if (nav) {
-            function updateNavShadow() {
-                if (window.scrollY > scrollThreshold) {
-                    nav.style.boxShadow = '0 4px 20px rgba(26, 26, 46, 0.08)';
-                } else {
-                    nav.style.boxShadow = 'none';
-                }
+        function updateNav() {
+            var scrollY = window.scrollY;
+
+            // Add shadow when scrolled
+            if (scrollY > scrollThreshold) {
+                nav.style.boxShadow = '0 4px 20px rgba(26, 26, 46, 0.08)';
+            } else {
+                nav.style.boxShadow = 'none';
             }
 
-            // Initial check
-            updateNavShadow();
-
-            // Listen for scroll
-            window.addEventListener('scroll', updateNavShadow, { passive: true });
+            // Show/hide sticky CTA after scrolling past hero
+            if (navCta) {
+                if (scrollY > heroHeight - 100) {
+                    navCta.classList.add('visible');
+                } else {
+                    navCta.classList.remove('visible');
+                }
+            }
         }
+
+        // Update hero height on resize
+        window.addEventListener('resize', function() {
+            heroHeight = hero.offsetHeight;
+        }, { passive: true });
+
+        // Initial check
+        updateNav();
+
+        // Listen for scroll
+        window.addEventListener('scroll', updateNav, { passive: true });
     }
 
     // --------------------------------------------------------------------------
-    // Intersection Observer for Fade-in Animations
+    // Scroll-Triggered Animations
     // --------------------------------------------------------------------------
 
     /**
      * Initialize scroll-triggered animations for elements below the fold
+     * Steps fade in with staggered timing (200ms delay between each)
      */
     function initScrollAnimations() {
+        // Skip if reduced motion is preferred
+        if (prefersReducedMotion) return;
+
         // Check if IntersectionObserver is supported
         if (!('IntersectionObserver' in window)) return;
 
-        var animatedElements = document.querySelectorAll('.step, .pricing-card, .faq-item');
+        // Elements to animate
+        var steps = document.querySelectorAll('.step');
+        var pricingCards = document.querySelectorAll('.pricing-card');
+        var faqItems = document.querySelectorAll('.faq-item');
 
+        // Create observer
         var observer = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('is-visible');
                     observer.unobserve(entry.target);
                 }
             });
         }, {
-            threshold: 0.1,
+            threshold: 0.15,
             rootMargin: '0px 0px -50px 0px'
         });
 
-        animatedElements.forEach(function(el, index) {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            el.style.transitionDelay = (index % 3) * 0.1 + 's';
+        // Apply animation class and observe steps (staggered by data-step attribute)
+        steps.forEach(function(el) {
+            el.classList.add('animate-on-scroll');
+            observer.observe(el);
+        });
+
+        // Apply to pricing cards with stagger (150ms between each)
+        pricingCards.forEach(function(el, index) {
+            el.classList.add('animate-on-scroll');
+            el.style.transitionDelay = (index * 0.15) + 's';
+            observer.observe(el);
+        });
+
+        // Apply to FAQ items with stagger (80ms between each)
+        faqItems.forEach(function(el, index) {
+            el.classList.add('animate-on-scroll');
+            el.style.transitionDelay = (index * 0.08) + 's';
             observer.observe(el);
         });
     }
@@ -241,7 +277,7 @@
         initFaqAccordion();
         initSmoothScroll();
         initFormFeedback();
-        initNavScrollEffect();
+        initNavEffects();
         initScrollAnimations();
     }
 
