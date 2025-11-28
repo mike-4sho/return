@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation -->
@@ -21,56 +21,116 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <!-- Gradient background -->
+        <div class="hero-background"></div>
+
+        <!-- Decorative orbs -->
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+
         <div class="container hero-grid">
-            <div class="hero-content fade-in">
-                <h1 class="hero-headline">That box has been sitting there for two weeks.</h1>
-                <p class="hero-subhead">Return It picks up your online returns from your doorstep. No printing labels. No taping boxes. No waiting in line. Just schedule a pickup and forget about it.</p>
+            <!-- Left side: Content -->
+            <div class="hero-content">
+                <h1 class="hero-headline fade-in">That satisfying feeling of getting rid of a package — without leaving the house.</h1>
+                <p class="hero-subhead fade-in fade-in-delay-1">Return It picks up your online returns from your doorstep. No printing. No taping. No driving. Just schedule a pickup and move on with your life.</p>
+
+                <!-- Benefits list -->
+                <div class="hero-benefits fade-in fade-in-delay-2">
+                    <div class="hero-benefit">
+                        <div class="hero-benefit-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <span>Same-day and next-day pickup available</span>
+                    </div>
+                    <div class="hero-benefit">
+                        <div class="hero-benefit-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <span>Works with Amazon, Target, Zappos, and more</span>
+                    </div>
+                    <div class="hero-benefit">
+                        <div class="hero-benefit-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <span>No printer? No problem — we handle labels too</span>
+                    </div>
+                </div>
             </div>
-            <div class="hero-form fade-in fade-in-delay">
-                <div class="hero-form-inner">
-                    <!-- Illustration -->
-                    <div class="hero-illustration">
-                        <svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <!-- Doorstep -->
-                            <rect x="10" y="70" width="100" height="8" rx="2" fill="#E5E5E5"/>
-                            <!-- Door frame -->
-                            <path d="M25 70V20c0-2 1-3 3-3h64c2 0 3 1 3 3v50" stroke="#0a0a0a" stroke-width="3"/>
-                            <!-- Door -->
-                            <rect x="32" y="22" width="50" height="48" rx="1" fill="#fafafa" stroke="#0a0a0a" stroke-width="2"/>
-                            <!-- Door handle -->
-                            <circle cx="72" cy="46" r="3" fill="#0a0a0a"/>
-                            <!-- Box on doorstep -->
-                            <rect x="42" y="52" width="24" height="18" rx="2" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="2"/>
-                            <path d="M42 58h24M54 52v18" stroke="#fafafa" stroke-width="1.5"/>
-                            <!-- Checkmark circle -->
-                            <circle cx="100" cy="25" r="16" fill="#00D4AA"/>
-                            <path d="M92 25l5 5 10-10" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <h2 class="form-headline">Get early access</h2>
-                    <form class="waitlist-form" onsubmit="return false;">
-                        <input type="email" placeholder="Enter your email" class="email-input" aria-label="Email address">
-                        <button type="submit" class="btn btn-accent">Join the Waitlist</button>
-                    </form>
-                    <div class="form-proof">
-                        <svg class="proof-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <circle cx="10" cy="10" r="10" fill="#00D4AA"/>
-                            <path d="M6 10l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <span>500+ Austin shoppers already on the waitlist</span>
-                    </div>
-                    <p class="form-note">Now piloting in Austin, TX</p>
+
+            <!-- Right side: Form card -->
+            <div class="hero-form-card fade-in fade-in-delay-3">
+                <!-- Illustration -->
+                <div class="hero-illustration">
+                    <svg viewBox="0 0 180 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <!-- Phone outline -->
+                        <rect x="50" y="10" width="80" height="120" rx="12" fill="#fff" stroke="#1a1a2e" stroke-width="3"/>
+                        <!-- Phone screen -->
+                        <rect x="58" y="24" width="64" height="90" rx="4" fill="#faf9f7"/>
+                        <!-- Phone notch -->
+                        <rect x="75" y="14" width="30" height="6" rx="3" fill="#e8e6e3"/>
+                        <!-- App header -->
+                        <rect x="62" y="30" width="56" height="8" rx="2" fill="#1a1a2e"/>
+                        <!-- Success checkmark circle -->
+                        <circle cx="90" cy="65" r="18" fill="#FF6B6B"/>
+                        <path d="M82 65l5 5 11-11" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- Status text lines -->
+                        <rect x="70" y="92" width="40" height="4" rx="2" fill="#1a1a2e"/>
+                        <rect x="75" y="100" width="30" height="3" rx="1.5" fill="#a8a5a0"/>
+                        <!-- Decorative package icon (floating) -->
+                        <g transform="translate(130, 25)">
+                            <rect x="0" y="0" width="28" height="22" rx="3" fill="#ffe5dc" stroke="#FF6B6B" stroke-width="2"/>
+                            <path d="M0 8h28M14 0v22" stroke="#FF6B6B" stroke-width="1.5"/>
+                        </g>
+                        <!-- Decorative arrow -->
+                        <g transform="translate(20, 70)">
+                            <circle cx="12" cy="12" r="12" fill="#e8e0f0"/>
+                            <path d="M8 12h8m-3-3l3 3-3 3" stroke="#1a1a2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                    </svg>
+                </div>
+
+                <h2 class="form-headline">Get early access</h2>
+
+                <form class="waitlist-form waitlist-form-stacked" onsubmit="return false;">
+                    <input type="email" placeholder="Enter your email" class="email-input" aria-label="Email address">
+                    <button type="submit" class="btn btn-primary btn-arrow">Join the Waitlist</button>
+                </form>
+
+                <p class="form-note">Now piloting in Austin, TX</p>
+
+                <div class="form-proof">
+                    <svg class="proof-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <circle cx="10" cy="10" r="10" fill="#FF6B6B"/>
+                        <path d="M6 10l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>500+ Austin shoppers already signed up</span>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Wave divider -->
+    <div class="wave-divider wave-divider-top">
+        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M0 80V40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0Z" fill="white"/>
+        </svg>
+    </div>
+
     <!-- How It Works Section -->
     <section class="how-it-works">
         <div class="container">
             <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Three simple steps to return freedom</p>
             <div class="steps-grid">
                 <div class="step">
+                    <div class="step-number">1</div>
                     <div class="step-icon">
                         <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="8" y="12" width="48" height="40" rx="4" stroke="currentColor" stroke-width="3"/>
@@ -83,6 +143,7 @@
                     <p class="step-desc">Open the app, tell us what you're returning, and choose a pickup window.</p>
                 </div>
                 <div class="step">
+                    <div class="step-number">2</div>
                     <div class="step-icon">
                         <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 52V20l20-8 20 8v32" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
@@ -90,7 +151,7 @@
                             <rect x="24" y="36" width="16" height="16" stroke="currentColor" stroke-width="3"/>
                             <path d="M32 36v16M24 44h16" stroke="currentColor" stroke-width="2"/>
                             <path d="M20 24h8M36 24h8" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                            <circle cx="48" cy="16" r="8" fill="#00D4AA"/>
+                            <circle cx="48" cy="16" r="8" fill="#FF6B6B"/>
                             <path d="M45 16l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
@@ -98,6 +159,7 @@
                     <p class="step-desc">Set the package outside. No need to be home.</p>
                 </div>
                 <div class="step">
+                    <div class="step-number">3</div>
                     <div class="step-icon">
                         <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="8" y="28" width="32" height="24" rx="2" stroke="currentColor" stroke-width="3"/>
@@ -106,7 +168,7 @@
                             <path d="M40 36h12l6 8v8h-6" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
                             <circle cx="52" cy="52" r="6" stroke="currentColor" stroke-width="3"/>
                             <path d="M16 28v-8h16v8" stroke="currentColor" stroke-width="2"/>
-                            <circle cx="24" cy="16" r="6" fill="#00D4AA"/>
+                            <circle cx="24" cy="16" r="6" fill="#FF6B6B"/>
                             <path d="M21 16l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
@@ -119,6 +181,7 @@
 
     <!-- Pain Point Section -->
     <section class="pain-point">
+        <div class="pain-point-blob"></div>
         <div class="container">
             <div class="pain-content">
                 <h2 class="pain-headline">You already outsource groceries, cleaning, and dog walks. Why are you still driving to UPS?</h2>
@@ -131,6 +194,7 @@
     <section class="pricing" id="pricing">
         <div class="container">
             <h2 class="section-title">Simple plans. No surprises.</h2>
+            <p class="section-subtitle">Choose the plan that fits your return habits</p>
             <div class="pricing-grid">
                 <div class="pricing-card">
                     <h3 class="plan-name">Light</h3>
@@ -170,12 +234,14 @@
 
     <!-- Social Proof Section -->
     <section class="social-proof">
+        <div class="social-proof-orb social-proof-orb-1"></div>
+        <div class="social-proof-orb social-proof-orb-2"></div>
         <div class="container">
             <h2 class="proof-headline">Join 500+ Austin shoppers on the waitlist</h2>
             <p class="proof-subhead">Be the first to know when we launch in your neighborhood.</p>
             <form class="waitlist-form waitlist-form-centered" onsubmit="return false;">
                 <input type="email" placeholder="Enter your email" class="email-input" aria-label="Email address">
-                <button type="submit" class="btn btn-primary">Join the Waitlist</button>
+                <button type="submit" class="btn btn-arrow">Join the Waitlist</button>
             </form>
         </div>
     </section>

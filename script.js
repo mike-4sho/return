@@ -1,6 +1,6 @@
 /**
  * Return It Landing Page JavaScript
- * Handles FAQ accordion functionality and smooth interactions
+ * Handles FAQ accordion, form feedback, and smooth interactions
  */
 
 (function() {
@@ -15,18 +15,17 @@
      * Allows users to expand/collapse FAQ items by clicking on questions
      */
     function initFaqAccordion() {
-        const faqItems = document.querySelectorAll('.faq-item');
+        var faqItems = document.querySelectorAll('.faq-item');
 
         faqItems.forEach(function(item) {
-            const question = item.querySelector('.faq-question');
+            var question = item.querySelector('.faq-question');
 
             if (question) {
                 question.addEventListener('click', function() {
                     // Check if this item is already active
-                    const isActive = item.classList.contains('active');
+                    var isActive = item.classList.contains('active');
 
-                    // Close all other FAQ items (optional: for single-open behavior)
-                    // Comment out the next 3 lines if you want multiple FAQs open at once
+                    // Close all other FAQ items (single-open behavior)
                     faqItems.forEach(function(otherItem) {
                         otherItem.classList.remove('active');
                         otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
@@ -51,23 +50,23 @@
      * Provides a polished navigation experience
      */
     function initSmoothScroll() {
-        const anchorLinks = document.querySelectorAll('a[href^="#"]');
+        var anchorLinks = document.querySelectorAll('a[href^="#"]');
 
         anchorLinks.forEach(function(link) {
             link.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
+                var targetId = this.getAttribute('href');
 
                 // Skip if it's just "#"
                 if (targetId === '#') return;
 
-                const targetElement = document.querySelector(targetId);
+                var targetElement = document.querySelector(targetId);
 
                 if (targetElement) {
                     e.preventDefault();
 
                     // Account for fixed navigation height
-                    const navHeight = document.querySelector('.nav').offsetHeight;
-                    const targetPosition = targetElement.offsetTop - navHeight - 20;
+                    var navHeight = document.querySelector('.nav').offsetHeight;
+                    var targetPosition = targetElement.offsetTop - navHeight - 20;
 
                     window.scrollTo({
                         top: targetPosition,
@@ -87,16 +86,16 @@
      * (No actual submission - this is a visual POC only)
      */
     function initFormFeedback() {
-        const forms = document.querySelectorAll('.waitlist-form');
+        var forms = document.querySelectorAll('.waitlist-form');
 
         forms.forEach(function(form) {
-            const button = form.querySelector('.btn');
-            const input = form.querySelector('.email-input');
+            var button = form.querySelector('.btn');
+            var input = form.querySelector('.email-input');
 
             if (button && input) {
                 // Store original button state
                 var originalText = button.textContent;
-                var isAccentButton = button.classList.contains('btn-accent');
+                var isPrimaryButton = button.classList.contains('btn-primary');
 
                 button.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -106,20 +105,20 @@
                     // Basic email validation for visual feedback
                     if (email && isValidEmail(email)) {
                         // Show success state
-                        button.textContent = 'You\'re on the list!';
-                        if (!isAccentButton) {
-                            button.style.backgroundColor = '#00D4AA';
-                            button.style.color = '#0a0a0a';
-                        }
+                        button.innerHTML = 'You\'re on the list! ✓';
+                        button.style.backgroundColor = '#10b981';
+                        button.style.boxShadow = '0 4px 14px rgba(16, 185, 129, 0.35)';
                         button.style.transform = 'scale(1.02)';
                         input.value = '';
+                        input.style.borderColor = '#10b981';
 
                         // Reset after 3 seconds
                         setTimeout(function() {
                             button.textContent = originalText;
                             button.style.backgroundColor = '';
-                            button.style.color = '';
+                            button.style.boxShadow = '';
                             button.style.transform = '';
+                            input.style.borderColor = '';
                         }, 3000);
                     } else if (email) {
                         // Show error state for invalid email
@@ -130,12 +129,29 @@
                             input.style.borderColor = '';
                             input.classList.remove('shake');
                         }, 600);
+                    } else {
+                        // Empty input - focus it
+                        input.focus();
+                        input.style.borderColor = '#FF6B6B';
+
+                        setTimeout(function() {
+                            input.style.borderColor = '';
+                        }, 1500);
                     }
                 });
 
                 // Clear error state on input
                 input.addEventListener('input', function() {
                     this.style.borderColor = '';
+                });
+
+                // Add focus effect
+                input.addEventListener('focus', function() {
+                    this.parentElement.classList.add('form-focused');
+                });
+
+                input.addEventListener('blur', function() {
+                    this.parentElement.classList.remove('form-focused');
                 });
             }
         });
@@ -147,7 +163,7 @@
      * @returns {boolean} - Whether the email format is valid
      */
     function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
 
@@ -156,20 +172,62 @@
     // --------------------------------------------------------------------------
 
     /**
-     * Add subtle shadow to navigation when page is scrolled
+     * Add shadow to navigation when page is scrolled
      */
     function initNavScrollEffect() {
-        const nav = document.querySelector('.nav');
+        var nav = document.querySelector('.nav');
+        var scrollThreshold = 20;
 
         if (nav) {
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 10) {
-                    nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+            function updateNavShadow() {
+                if (window.scrollY > scrollThreshold) {
+                    nav.style.boxShadow = '0 4px 20px rgba(26, 26, 46, 0.08)';
                 } else {
                     nav.style.boxShadow = 'none';
                 }
-            }, { passive: true });
+            }
+
+            // Initial check
+            updateNavShadow();
+
+            // Listen for scroll
+            window.addEventListener('scroll', updateNavShadow, { passive: true });
         }
+    }
+
+    // --------------------------------------------------------------------------
+    // Intersection Observer for Fade-in Animations
+    // --------------------------------------------------------------------------
+
+    /**
+     * Initialize scroll-triggered animations for elements below the fold
+     */
+    function initScrollAnimations() {
+        // Check if IntersectionObserver is supported
+        if (!('IntersectionObserver' in window)) return;
+
+        var animatedElements = document.querySelectorAll('.step, .pricing-card, .faq-item');
+
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        animatedElements.forEach(function(el, index) {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            el.style.transitionDelay = (index % 3) * 0.1 + 's';
+            observer.observe(el);
+        });
     }
 
     // --------------------------------------------------------------------------
@@ -184,6 +242,7 @@
         initSmoothScroll();
         initFormFeedback();
         initNavScrollEffect();
+        initScrollAnimations();
     }
 
     // Wait for DOM to be ready
