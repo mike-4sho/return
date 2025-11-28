@@ -94,32 +94,42 @@
             const input = form.querySelector('.email-input');
 
             if (button && input) {
+                // Store original button state
+                var originalText = button.textContent;
+                var isAccentButton = button.classList.contains('btn-accent');
+
                 button.addEventListener('click', function(e) {
                     e.preventDefault();
 
-                    const email = input.value.trim();
+                    var email = input.value.trim();
 
                     // Basic email validation for visual feedback
                     if (email && isValidEmail(email)) {
                         // Show success state
                         button.textContent = 'You\'re on the list!';
-                        button.style.backgroundColor = '#00D4AA';
-                        button.style.color = '#0a0a0a';
+                        if (!isAccentButton) {
+                            button.style.backgroundColor = '#00D4AA';
+                            button.style.color = '#0a0a0a';
+                        }
+                        button.style.transform = 'scale(1.02)';
                         input.value = '';
 
                         // Reset after 3 seconds
                         setTimeout(function() {
-                            button.textContent = 'Join the Waitlist';
+                            button.textContent = originalText;
                             button.style.backgroundColor = '';
                             button.style.color = '';
+                            button.style.transform = '';
                         }, 3000);
                     } else if (email) {
                         // Show error state for invalid email
                         input.style.borderColor = '#ef4444';
+                        input.classList.add('shake');
 
                         setTimeout(function() {
                             input.style.borderColor = '';
-                        }, 2000);
+                            input.classList.remove('shake');
+                        }, 600);
                     }
                 });
 
