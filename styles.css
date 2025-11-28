@@ -879,48 +879,8 @@ button {
     }
 }
 
-/* Pull quote styling */
-.pain-pullquote {
-    margin: var(--space-6) auto var(--space-6);
-    padding: var(--space-5) var(--space-6);
-    background: linear-gradient(135deg, var(--color-white), var(--color-gray-50));
-    border-radius: var(--radius-xl);
-    border-left: 4px solid var(--color-accent);
-    max-width: 500px;
-    box-shadow: var(--shadow-md);
-}
-
-@media (min-width: 960px) {
-    .pain-pullquote {
-        margin: var(--space-8) 0;
-        max-width: none;
-    }
-}
-
-.pain-pullquote p {
-    font-family: var(--font-display);
-    font-size: var(--text-lg);
-    font-weight: 600;
-    font-style: italic;
-    color: var(--color-black);
-    line-height: 1.5;
-    margin: 0;
-}
-
-@media (min-width: 768px) {
-    .pain-pullquote p {
-        font-size: var(--text-xl);
-    }
-}
-
-@media (min-width: 960px) {
-    .pain-pullquote p {
-        font-size: var(--text-2xl);
-    }
-}
-
 .pain-body {
-    font-size: var(--text-base);
+    font-size: var(--text-lg);
     line-height: 1.8;
     color: var(--color-gray-600);
     max-width: 600px;
@@ -929,7 +889,7 @@ button {
 
 @media (min-width: 768px) {
     .pain-body {
-        font-size: var(--text-lg);
+        font-size: var(--text-xl);
     }
 }
 
