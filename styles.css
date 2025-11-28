@@ -905,6 +905,7 @@ button {
     display: grid;
     gap: var(--space-6);
     margin-bottom: var(--space-10);
+    padding-top: var(--space-4);
 }
 
 @media (min-width: 768px) {
@@ -912,6 +913,7 @@ button {
         grid-template-columns: repeat(3, 1fr);
         gap: var(--space-6);
         align-items: stretch;
+        padding-top: var(--space-6);
     }
 }
 
@@ -931,6 +933,11 @@ button {
     border-color: var(--color-gray-300);
     transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
+}
+
+/* Non-featured cards get extra top padding to align content with featured card */
+.pricing-card:not(.featured) {
+    padding-top: var(--space-12);
 }
 
 /* Featured pricing card with enhanced styling */
@@ -974,11 +981,9 @@ button {
     50% { opacity: 0.7; }
 }
 
+/* Popular badge - positioned inside the card */
 .popular-badge {
-    position: absolute;
-    top: -14px;
-    left: 50%;
-    transform: translateX(-50%);
+    display: inline-block;
     background-color: var(--color-accent);
     color: var(--color-white);
     font-size: var(--text-xs);
@@ -988,6 +993,7 @@ button {
     padding: var(--space-2) var(--space-4);
     border-radius: var(--radius-full);
     white-space: nowrap;
+    margin-bottom: var(--space-4);
 }
 
 .plan-name {
