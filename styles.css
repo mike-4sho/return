@@ -35,6 +35,7 @@
     /* Typography */
     --font-display: 'Space Grotesk', sans-serif;
     --font-body: 'Inter', sans-serif;
+    --font-handwriting: 'Caveat', cursive;
 
     /* Font Sizes */
     --text-xs: 0.75rem;
@@ -1162,6 +1163,111 @@ button {
     background-color: var(--color-gray-800);
     box-shadow: 0 6px 20px rgba(26, 26, 46, 0.35);
     transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   Founder's Note Section
+   -------------------------------------------------------------------------- */
+.founders-note {
+    padding: var(--space-20) 0;
+    background-color: var(--color-gray-50);
+}
+
+@media (min-width: 768px) {
+    .founders-note {
+        padding: var(--space-24) 0;
+    }
+}
+
+.note-card {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: #fffef9;
+    background-image:
+        linear-gradient(90deg, transparent 0%, transparent 4%, rgba(200, 180, 160, 0.03) 4%, rgba(200, 180, 160, 0.03) 4.5%, transparent 4.5%),
+        linear-gradient(rgba(200, 180, 160, 0.08) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 28px;
+    padding: var(--space-10) var(--space-8);
+    border-radius: var(--radius-lg);
+    box-shadow:
+        0 4px 6px rgba(26, 26, 46, 0.04),
+        0 10px 20px rgba(26, 26, 46, 0.06),
+        0 1px 3px rgba(26, 26, 46, 0.08);
+    position: relative;
+}
+
+/* Subtle paper edge effect */
+.note-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--radius-lg);
+    box-shadow: inset 0 0 30px rgba(200, 180, 160, 0.1);
+    pointer-events: none;
+}
+
+@media (min-width: 768px) {
+    .note-card {
+        padding: var(--space-12) var(--space-10);
+        transform: rotate(-1deg);
+    }
+}
+
+@media (min-width: 960px) {
+    .note-card {
+        transform: rotate(-1.5deg);
+    }
+}
+
+.note-content {
+    font-family: 'Caveat', cursive;
+    font-size: 1.35rem;
+    line-height: 1.8;
+    color: var(--color-gray-700);
+}
+
+@media (min-width: 768px) {
+    .note-content {
+        font-size: 1.5rem;
+        transform: rotate(1deg);
+    }
+}
+
+@media (min-width: 960px) {
+    .note-content {
+        font-size: 1.6rem;
+        transform: rotate(1.5deg);
+    }
+}
+
+.note-content p {
+    margin-bottom: var(--space-5);
+}
+
+.note-content p:last-of-type:not(.note-signature) {
+    margin-bottom: var(--space-8);
+}
+
+.note-signature {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-black);
+    margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+    .note-signature {
+        font-size: 2rem;
+    }
+}
+
+@media (min-width: 960px) {
+    .note-signature {
+        font-size: 2.2rem;
+    }
 }
 
 /* --------------------------------------------------------------------------
