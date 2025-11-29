@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --color-coral-50: #fff5f5;
+  --color-coral-100: #ffe0e0;
+  --color-coral-200: #ffc7c7;
+  --color-coral-300: #ffa3a3;
+  --color-coral-400: #ff7a7a;
+  --color-coral-500: #FF6B6B;
+  --color-coral-600: #ee5a5a;
+  --color-coral-700: #d94545;
+  --color-coral-800: #b33a3a;
+  --color-coral-900: #933333;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar for date picker */
+.date-scroll::-webkit-scrollbar {
+  height: 4px;
+}
+
+.date-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 2px;
+}
+
+.date-scroll::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 2px;
+}
+
+.date-scroll::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
